@@ -13,13 +13,12 @@
             --primary: #e91e63;
             --secondary: #ff5722;
             --accent: #ff9800;
-            --dark-bg: #0f0f23;
-            --darker-bg: #0a0a18;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --card-border: rgba(255, 255, 255, 0.1);
+            --amoled-bg: #000000;
+            --amoled-card: #111111;
+            --amoled-border: #222222;
             --text-primary: #ffffff;
-            --text-secondary: #a1a1aa;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --text-secondary: #aaaaaa;
+            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         * {
@@ -30,7 +29,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, var(--darker-bg), var(--dark-bg));
+            background: var(--amoled-bg);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
@@ -45,12 +44,12 @@
 
         /* Header */
         header {
-            padding: 100px 0 80px;
+            padding: 120px 0 80px;
             text-align: center;
             position: relative;
-            background: linear-gradient(180deg, rgba(15, 15, 35, 0.9) 0%, rgba(15, 15, 35, 0.7) 100%);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--card-border);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 100%);
+            border-bottom: 1px solid var(--amoled-border);
+            overflow: hidden;
         }
 
         .header-content {
@@ -58,36 +57,46 @@
             z-index: 2;
         }
 
-        .logo {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
+        .logo-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            transform: translateY(0);
+            transition: var(--transition);
+            animation: logoFloat 6s ease-in-out infinite;
         }
 
-        .logo i {
-            font-size: 32px;
-            color: var(--primary);
+        .logo-container:hover {
+            transform: translateY(-10px);
+        }
+
+        .logo {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 30px;
+            filter: drop-shadow(0 0 20px rgba(233, 30, 99, 0.3));
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            margin-bottom: 15px;
             font-weight: 700;
             color: var(--text-primary);
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
         }
 
         .tagline {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 30px;
             color: var(--text-secondary);
             font-weight: 400;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.7s forwards;
         }
 
         .badges {
@@ -96,14 +105,15 @@
             flex-wrap: wrap;
             gap: 10px;
             margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
         }
 
         .badge {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
-            padding: 8px 15px;
-            border-radius: 8px;
+            background: var(--amoled-card);
+            border: 1px solid var(--amoled-border);
+            padding: 10px 18px;
+            border-radius: 12px;
             font-size: 0.9rem;
             display: inline-flex;
             align-items: center;
@@ -113,7 +123,7 @@
         }
 
         .badge:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             border-color: var(--primary);
             color: var(--text-primary);
         }
@@ -122,8 +132,8 @@
             display: inline-block;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 12px 30px;
-            border-radius: 8px;
+            padding: 14px 32px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 500;
             font-size: 1.1rem;
@@ -131,11 +141,30 @@
             margin-top: 20px;
             border: none;
             cursor: pointer;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.1s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
         }
 
         .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.4);
         }
 
         .lang-switcher {
@@ -144,18 +173,19 @@
             justify-content: center;
             gap: 10px;
             flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.3s forwards;
         }
 
         .lang-btn {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
+            background: var(--amoled-card);
+            border: 1px solid var(--amoled-border);
             color: var(--text-secondary);
-            padding: 6px 12px;
-            border-radius: 6px;
+            padding: 8px 16px;
+            border-radius: 10px;
             cursor: pointer;
             transition: var(--transition);
-            font-size: 0.8rem;
+            font-size: 0.9rem;
         }
 
         .lang-btn.active {
@@ -171,17 +201,25 @@
 
         /* Sections */
         section {
-            padding: 80px 0;
+            padding: 100px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             position: relative;
         }
 
         .section-title h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--text-primary);
             display: inline-block;
             font-weight: 700;
@@ -191,58 +229,65 @@
         .section-title h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: 3px;
         }
 
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            gap: 30px;
         }
 
         .feature-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 25px;
+            background: var(--amoled-card);
+            border: 1px solid var(--amoled-border);
+            border-radius: 20px;
+            padding: 30px;
             transition: var(--transition);
             text-align: center;
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease forwards;
+            transform: translateY(30px);
         }
 
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.2s; }
-        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             border-color: var(--primary);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
         .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--card-bg);
-            border-radius: 12px;
+            width: 70px;
+            height: 70px;
+            background: var(--amoled-card);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
-            font-size: 24px;
+            font-size: 28px;
             color: var(--primary);
-            border: 1px solid var(--card-border);
+            border: 1px solid var(--amoled-border);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            background: rgba(233, 30, 99, 0.1);
+            transform: scale(1.1);
         }
 
         .feature-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 15px;
             color: var(--text-primary);
             font-weight: 500;
@@ -255,9 +300,9 @@
 
         /* Installation */
         .installation {
-            background: rgba(10, 10, 24, 0.5);
-            border-top: 1px solid var(--card-border);
-            border-bottom: 1px solid var(--card-border);
+            background: rgba(17, 17, 17, 0.7);
+            border-top: 1px solid var(--amoled-border);
+            border-bottom: 1px solid var(--amoled-border);
         }
 
         .steps {
@@ -268,33 +313,32 @@
         .step {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 25px;
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
-            padding: 20px;
-            border-radius: 12px;
+            margin-bottom: 30px;
+            background: var(--amoled-card);
+            border: 1px solid var(--amoled-border);
+            padding: 25px;
+            border-radius: 20px;
             transition: var(--transition);
             opacity: 0;
-            transform: translateX(-20px);
-            animation: fadeInRight 0.6s ease forwards;
+            transform: translateX(-30px);
         }
 
-        .step:nth-child(1) { animation-delay: 0.1s; }
-        .step:nth-child(2) { animation-delay: 0.2s; }
-        .step:nth-child(3) { animation-delay: 0.3s; }
+        .step.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
 
         .step:hover {
-            transform: translateX(5px);
+            transform: translateX(10px);
             border-color: var(--primary);
         }
 
         .step-number {
-            width: 36px;
-            height: 36px;
+            width: 45px;
+            height: 45px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            border-radius: 8px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -302,7 +346,12 @@
             margin-right: 20px;
             flex-shrink: 0;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .step:hover .step-number {
+            transform: scale(1.1);
         }
 
         .step-content h3 {
@@ -319,37 +368,40 @@
         .compatibility-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            gap: 25px;
             margin-top: 40px;
         }
 
         .compat-item {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
-            padding: 20px;
-            border-radius: 12px;
+            background: var(--amoled-card);
+            border: 1px solid var(--amoled-border);
+            padding: 25px;
+            border-radius: 20px;
             text-align: center;
             transition: var(--transition);
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease forwards;
+            transform: translateY(30px);
         }
 
-        .compat-item:nth-child(1) { animation-delay: 0.1s; }
-        .compat-item:nth-child(2) { animation-delay: 0.2s; }
-        .compat-item:nth-child(3) { animation-delay: 0.3s; }
-        .compat-item:nth-child(4) { animation-delay: 0.4s; }
+        .compat-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         .compat-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             border-color: var(--primary);
         }
 
         .compat-icon {
-            font-size: 36px;
+            font-size: 40px;
             margin-bottom: 15px;
             color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .compat-item:hover .compat-icon {
+            transform: scale(1.2);
         }
 
         .compat-item h3 {
@@ -359,8 +411,8 @@
 
         /* Support */
         .support {
-            background: rgba(10, 10, 24, 0.5);
-            border-top: 1px solid var(--card-border);
+            background: rgba(17, 17, 17, 0.7);
+            border-top: 1px solid var(--amoled-border);
         }
 
         .support-content {
@@ -372,46 +424,45 @@
         .support-icons {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
             margin-top: 30px;
         }
 
         .support-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
+            width: 60px;
+            height: 60px;
+            background: var(--amoled-card);
+            border: 1px solid var(--amoled-border);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 24px;
             color: var(--text-secondary);
             transition: var(--transition);
             text-decoration: none;
         }
 
         .support-icon:hover {
-            transform: scale(1.1);
+            transform: scale(1.2);
             border-color: var(--primary);
             color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         /* Footer */
         footer {
-            background: rgba(10, 10, 24, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 50px 0 30px;
             text-align: center;
-            border-top: 1px solid var(--card-border);
+            border-top: 1px solid var(--amoled-border);
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
+            gap: 25px;
+            margin: 25px 0;
         }
 
         .footer-links a {
@@ -424,11 +475,17 @@
             color: var(--primary);
         }
 
+        .copyright {
+            margin-top: 30px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -436,21 +493,27 @@
             }
         }
 
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
+        @keyframes logoFloat {
+            0% {
+                transform: translateY(0);
             }
-            to {
-                opacity: 1;
-                transform: translateX(0);
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0);
             }
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            
+            .logo-container {
+                width: 160px;
+                height: 160px;
             }
             
             .badges {
@@ -477,7 +540,7 @@
             }
             
             .section-title h2 {
-                font-size: 1.6rem;
+                font-size: 1.8rem;
             }
 
             .lang-switcher {
@@ -485,8 +548,8 @@
             }
 
             .lang-btn {
-                padding: 5px 10px;
-                font-size: 0.75rem;
+                padding: 6px 12px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -495,9 +558,10 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-microchip"></i>
+                <div class="logo-container">
+                    <img src="logo/logo.jpg" alt="NextRAM Logo" class="logo">
                 </div>
+                
                 <h1>NextRAM</h1>
                 <p class="tagline">Advanced Memory Management Module</p>
                 
@@ -536,7 +600,7 @@
                 <h2 class="description-title">Description</h2>
             </div>
             <div class="description-content">
-                <p class="description-text" style="text-align: center; font-size: 1.1rem; max-width: 900px; margin: 0 auto; color: var(--text-secondary);">
+                <p class="description-text" style="text-align: center; font-size: 1.2rem; max-width: 900px; margin: 0 auto; color: var(--text-secondary);">
                     NextRAM is a powerful Magisk module for advanced memory management on Android devices. The module provides enhanced zram and swap file capabilities along with fine-tuned memory parameters for performance optimization.
                 </p>
             </div>
@@ -673,6 +737,9 @@
             <p class="warning-text" style="margin-top: 20px; font-size: 0.9rem; color: var(--text-secondary);">
                 Note: Use the module with caution. Incorrect configuration may affect system stability.
             </p>
+            <div class="copyright">
+                All rights reserved © 2025 NextRAM.
+            </div>
         </div>
     </footer>
 
@@ -832,6 +899,58 @@
                 button.addEventListener('click', function() {
                     switchLanguage(this.dataset.lang);
                 });
+            });
+
+            // Scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Animate child elements with delays
+                        if (entry.target.classList.contains('features-grid')) {
+                            const cards = entry.target.querySelectorAll('.feature-card');
+                            cards.forEach((card, index) => {
+                                setTimeout(() => {
+                                    card.classList.add('visible');
+                                }, index * 200);
+                            });
+                        }
+                        
+                        if (entry.target.classList.contains('steps')) {
+                            const steps = entry.target.querySelectorAll('.step');
+                            steps.forEach((step, index) => {
+                                setTimeout(() => {
+                                    step.classList.add('visible');
+                                }, index * 200);
+                            });
+                        }
+                        
+                        if (entry.target.classList.contains('compatibility-grid')) {
+                            const items = entry.target.querySelectorAll('.compat-item');
+                            items.forEach((item, index) => {
+                                setTimeout(() => {
+                                    item.classList.add('visible');
+                                }, index * 150);
+                            });
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Observe feature cards, steps, and compatibility items directly
+            document.querySelectorAll('.feature-card, .step, .compat-item').forEach(el => {
+                observer.observe(el);
             });
         });
     </script>
