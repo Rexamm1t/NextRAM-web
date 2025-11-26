@@ -54,10 +54,15 @@
             transform: translateY(0);
             transition: var(--transition);
             cursor: pointer;
+            opacity: 1;
+            visibility: visible;
         }
 
         .telegram-island.hidden {
+            opacity: 0;
+            visibility: hidden;
             transform: translateY(-100px);
+            pointer-events: none;
         }
 
         .telegram-island.with-nav {
@@ -1012,9 +1017,15 @@
                     <a href="https://github.com/Rexamm1t/NextRAM" class="support-icon">
                         <i class="fab fa-github"></i>
                     </a>
+                    <a href="mailto:nextram.official@gmail.com" class="support-icon">
+                        <i class="fas fa-envelope"></i>
+                    </a>
                 </div>
                 <p class="developers-text" style="margin-top: 30px; color: var(--text-secondary);">
                     <strong class="developers-label" style="color: var(--text-primary);">Developers (NextRAM Team):</strong> <span class="developers-list">@rexamm1t, @matrix_5858, @Alloyd031, @wefol1x, @w3b_0s1nt</span>
+                </p>
+                <p class="email-text" style="margin-top: 20px; color: var(--text-secondary);">
+                    <strong style="color: var(--text-primary);">Email Support:</strong> nextram.official@gmail.com
                 </p>
             </div>
         </div>
@@ -1026,6 +1037,7 @@
             <div class="footer-links">
                 <a href="https://github.com/Rexamm1t/NextRAM">GitHub</a>
                 <a href="https://t.me/nextram_official">Telegram</a>
+                <a href="mailto:nextram.official@gmail.com">Email Support</a>
                 <a href="#">Privacy Policy</a>
             </div>
             <p class="license-text" style="color: var(--text-secondary); margin-top: 15px;">Module is distributed under GPL v3 license. Source code is available in project repository.</p>
