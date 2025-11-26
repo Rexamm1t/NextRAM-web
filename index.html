@@ -18,6 +18,8 @@
             --amoled-border: #222222;
             --text-primary: #ffffff;
             --text-secondary: #aaaaaa;
+            --telegram-blue: #0088cc;
+            --telegram-light: #1e96d2;
             --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
@@ -36,15 +38,180 @@
             min-height: 100vh;
         }
 
+        .telegram-island {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--telegram-blue), var(--telegram-light));
+            color: white;
+            padding: 12px 18px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1001;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transform: translateY(0);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .telegram-island.hidden {
+            transform: translateY(-100px);
+        }
+
+        .telegram-island.with-nav {
+            top: 80px;
+        }
+
+        .island-icon {
+            font-size: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .island-text {
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .close-island {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 50%;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+        }
+
+        .close-island:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .floating-nav {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100%);
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--amoled-border);
+            border-radius: 50px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 500px;
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .floating-nav.visible {
+            transform: translateX(-50%) translateY(20px);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .nav-logo .next {
+            filter: blur(0.5px);
+            color: var(--text-primary);
+        }
+
+        .nav-logo .ram {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-left: 2px;
+        }
+
+        .nav-lang-switcher {
+            position: relative;
+        }
+
+        .lang-trigger {
+            background: var(--amoled-card);
+            border: 1px solid var(--amoled-border);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .lang-trigger:hover {
+            border-color: var(--primary);
+            color: var(--text-primary);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--amoled-card);
+            border: 1px solid var(--amoled-border);
+            border-radius: 12px;
+            padding: 8px;
+            margin-top: 8px;
+            min-width: 150px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .lang-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: block;
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .lang-option:hover, .lang-option.active {
+            background: rgba(233, 30, 99, 0.1);
+            color: var(--primary);
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* Header */
         header {
-            padding: 120px 0 80px;
+            padding: 140px 0 80px;
             text-align: center;
             position: relative;
             background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 100%);
@@ -167,6 +334,59 @@
             box-shadow: 0 10px 25px rgba(233, 30, 99, 0.4);
         }
 
+        .latest-release {
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.3s forwards;
+        }
+
+        .release-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--amoled-card);
+            border: 1px solid var(--amoled-border);
+            padding: 8px 16px;
+            border-radius: 12px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .release-badge:hover {
+            border-color: var(--primary);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .release-version {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .release-date {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .loading-release {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
         .lang-switcher {
             margin-top: 30px;
             display: flex;
@@ -199,7 +419,6 @@
             color: var(--text-primary);
         }
 
-        /* Sections */
         section {
             padding: 100px 0;
             opacity: 0;
@@ -298,7 +517,6 @@
             line-height: 1.6;
         }
 
-        /* Installation */
         .installation {
             background: rgba(17, 17, 17, 0.7);
             border-top: 1px solid var(--amoled-border);
@@ -364,7 +582,6 @@
             color: var(--text-secondary);
         }
 
-        /* Compatibility */
         .compatibility-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -409,7 +626,6 @@
             font-weight: 500;
         }
 
-        /* Support */
         .support {
             background: rgba(17, 17, 17, 0.7);
             border-top: 1px solid var(--amoled-border);
@@ -450,7 +666,6 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Footer */
         footer {
             background: rgba(0, 0, 0, 0.9);
             padding: 50px 0 30px;
@@ -481,7 +696,6 @@
             font-size: 0.9rem;
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -505,7 +719,23 @@
             }
         }
 
-        /* Responsive */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.2rem;
@@ -551,10 +781,75 @@
                 padding: 6px 12px;
                 font-size: 0.8rem;
             }
+            
+            .telegram-island {
+                top: 15px;
+                right: 15px;
+                padding: 10px 15px;
+            }
+            
+            .telegram-island.with-nav {
+                top: 75px;
+            }
+            
+            .island-text {
+                font-size: 0.8rem;
+            }
+            
+            .floating-nav {
+                width: 95%;
+                padding: 10px 20px;
+            }
+            
+            .nav-logo {
+                font-size: 1.1rem;
+            }
+            
+            .lang-trigger {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .telegram-island {
+                padding: 8px 12px;
+            }
+            
+            .island-text {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="telegram-island" id="telegramIsland">
+        <i class="fab fa-telegram island-icon"></i>
+        <span class="island-text">Присоединяйтесь к нашему Telegram</span>
+        <button class="close-island" id="closeIsland">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <div class="floating-nav" id="floatingNav">
+        <div class="nav-logo">
+            <span class="next">Next</span><span class="ram">RAM</span>
+        </div>
+        <div class="nav-lang-switcher">
+            <button class="lang-trigger" id="langTrigger">
+                <i class="fas fa-globe"></i>
+                <span class="current-lang">English</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="lang-dropdown" id="langDropdown">
+                <button class="lang-option active" data-lang="en">English</button>
+                <button class="lang-option" data-lang="ru">Русский</button>
+                <button class="lang-option" data-lang="uk">Українська</button>
+                <button class="lang-option" data-lang="zh">中文</button>
+            </div>
+        </div>
+    </div>
+
     <header>
         <div class="container">
             <div class="header-content">
@@ -583,12 +878,12 @@
                 <a href="https://github.com/Rexamm1t/NextRAM/releases" class="download-btn">
                     <i class="fas fa-download"></i> <span class="download-text">Download Now</span>
                 </a>
-                
-                <div class="lang-switcher">
-                    <button class="lang-btn active" data-lang="en">English</button>
-                    <button class="lang-btn" data-lang="ru">Русский</button>
-                    <button class="lang-btn" data-lang="uk">Українська</button>
-                    <button class="lang-btn" data-lang="zh">中文</button>
+
+                <div class="latest-release">
+                    <div id="releaseInfo" class="loading-release">
+                        <div class="spinner"></div>
+                        <span>Checking latest release...</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -719,7 +1014,7 @@
                     </a>
                 </div>
                 <p class="developers-text" style="margin-top: 30px; color: var(--text-secondary);">
-                    <strong class="developers-label" style="color: var(--text-primary);">Developers:</strong> <span class="developers-list">@rexamm1t, @matrix_5858, @Alloyd031, @wefol1x, @w3b_0s1nt</span>
+                    <strong class="developers-label" style="color: var(--text-primary);">Developers (NextRAM Team):</strong> <span class="developers-list">@rexamm1t, @matrix_5858, @Alloyd031, @wefol1x, @w3b_0s1nt</span>
                 </p>
             </div>
         </div>
@@ -738,16 +1033,101 @@
                 Note: Use the module with caution. Incorrect configuration may affect system stability.
             </p>
             <div class="copyright">
-                All rights reserved © 2025 NextRAM.
+                All rights reserved © 2025 NextRAM - NextRAM Team.
             </div>
         </div>
     </footer>
 
     <script>
-        // Language switching functionality
         document.addEventListener('DOMContentLoaded', function() {
+            const telegramIsland = document.getElementById('telegramIsland');
+            const closeIsland = document.getElementById('closeIsland');
+            
+            const islandClosed = localStorage.getItem('telegramIslandClosed');
+            
+            if (islandClosed) {
+                telegramIsland.classList.add('hidden');
+            }
+            
+            closeIsland.addEventListener('click', function(e) {
+                e.stopPropagation();
+                telegramIsland.classList.add('hidden');
+                localStorage.setItem('telegramIslandClosed', 'true');
+            });
+            
+            telegramIsland.addEventListener('click', function() {
+                window.open('https://t.me/nextram_official', '_blank');
+            });
+            
+            const floatingNav = document.getElementById('floatingNav');
+            const logoContainer = document.querySelector('.logo-container');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        floatingNav.classList.add('visible');
+                        telegramIsland.classList.add('with-nav');
+                    } else {
+                        floatingNav.classList.remove('visible');
+                        telegramIsland.classList.remove('with-nav');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            observer.observe(logoContainer);
+            
+            const langTrigger = document.getElementById('langTrigger');
+            const langDropdown = document.getElementById('langDropdown');
+            const currentLang = document.querySelector('.current-lang');
+            const langOptions = document.querySelectorAll('.lang-option');
             const langButtons = document.querySelectorAll('.lang-btn');
             
+            langTrigger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                langDropdown.classList.toggle('active');
+            });
+            
+            document.addEventListener('click', function() {
+                langDropdown.classList.remove('active');
+            });
+            
+            async function fetchLatestRelease() {
+                try {
+                    const response = await fetch('https://api.github.com/repos/Rexamm1t/NextRAM/releases/latest');
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch release data');
+                    }
+                    const releaseData = await response.json();
+                    return releaseData;
+                } catch (error) {
+                    console.error('Error fetching release data:', error);
+                    return null;
+                }
+            }
+
+            function updateReleaseInfo(releaseData) {
+                const releaseInfo = document.getElementById('releaseInfo');
+                
+                if (!releaseData) {
+                    releaseInfo.innerHTML = '<span>Failed to load release info</span>';
+                    return;
+                }
+
+                const version = releaseData.tag_name;
+                const releaseDate = new Date(releaseData.published_at).toLocaleDateString();
+                
+                releaseInfo.innerHTML = `
+                    <a href="${releaseData.html_url}" target="_blank" class="release-badge">
+                        <i class="fas fa-tag"></i>
+                        <span class="release-version">${version}</span>
+                        <span class="release-date">${releaseDate}</span>
+                        <i class="fas fa-external-link-alt" style="font-size: 0.8rem;"></i>
+                    </a>
+                `;
+            }
+
+            fetchLatestRelease().then(updateReleaseInfo);
+
             const translations = {
                 en: {
                     'description-title': 'Description',
@@ -876,7 +1256,15 @@
             };
 
             function switchLanguage(lang) {
-                // Update button states
+                langOptions.forEach(option => {
+                    if (option.dataset.lang === lang) {
+                        option.classList.add('active');
+                        currentLang.textContent = option.textContent;
+                    } else {
+                        option.classList.remove('active');
+                    }
+                });
+
                 langButtons.forEach(btn => {
                     if (btn.dataset.lang === lang) {
                         btn.classList.add('active');
@@ -885,7 +1273,6 @@
                     }
                 });
 
-                // Update all translatable elements
                 for (const key in translations[lang]) {
                     const elements = document.querySelectorAll(`.${key}`);
                     elements.forEach(element => {
@@ -894,25 +1281,29 @@
                 }
             }
 
-            // Add event listeners to language buttons
+            langOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    switchLanguage(this.dataset.lang);
+                    langDropdown.classList.remove('active');
+                });
+            });
+
             langButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     switchLanguage(this.dataset.lang);
                 });
             });
 
-            // Scroll animations
-            const observerOptions = {
+            const sectionObserverOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
             };
 
-            const observer = new IntersectionObserver((entries) => {
+            const sectionObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                         
-                        // Animate child elements with delays
                         if (entry.target.classList.contains('features-grid')) {
                             const cards = entry.target.querySelectorAll('.feature-card');
                             cards.forEach((card, index) => {
@@ -941,16 +1332,14 @@
                         }
                     }
                 });
-            }, observerOptions);
+            }, sectionObserverOptions);
 
-            // Observe all sections
             document.querySelectorAll('section').forEach(section => {
-                observer.observe(section);
+                sectionObserver.observe(section);
             });
             
-            // Observe feature cards, steps, and compatibility items directly
             document.querySelectorAll('.feature-card, .step, .compat-item').forEach(el => {
-                observer.observe(el);
+                sectionObserver.observe(el);
             });
         });
     </script>
