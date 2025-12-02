@@ -114,7 +114,7 @@
             align-items: center;
             justify-content: space-between;
             width: 90%;
-            max-width: 600px;
+            max-width: 500px;
             z-index: 1000;
             transition: var(--transition);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -587,6 +587,66 @@
             box-shadow: 0 10px 20px rgba(233, 30, 99, 0.2);
         }
 
+        .stats-section {
+            background: rgba(17, 17, 17, 0.7);
+            border-top: 1px solid var(--amoled-border);
+            border-bottom: 1px solid var(--amoled-border);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 30px;
+            background: var(--amoled-card);
+            border: 1px solid var(--amoled-border);
+            border-radius: 20px;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .stat-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .stat-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover .stat-icon {
+            transform: scale(1.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -756,6 +816,136 @@
             font-weight: 500;
         }
 
+        .faq-section {
+            background: rgba(17, 17, 17, 0.5);
+            border-top: 1px solid var(--amoled-border);
+            border-bottom: 1px solid var(--amoled-border);
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--amoled-card);
+            border: 1px solid var(--amoled-border);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .faq-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: rgba(233, 30, 99, 0.05);
+        }
+
+        .faq-question h3 {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .faq-toggle {
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 30px 25px;
+            max-height: 500px;
+        }
+
+        .donate-section {
+            text-align: center;
+            background: rgba(17, 17, 17, 0.7);
+            border-top: 1px solid var(--amoled-border);
+        }
+
+        .donate-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .donate-text {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .donate-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--amoled-card);
+            border: 1px solid var(--amoled-border);
+            color: var(--text-primary);
+            padding: 14px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+
+        .donate-btn:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            background: rgba(233, 30, 99, 0.1);
+            box-shadow: 0 10px 20px rgba(233, 30, 99, 0.2);
+        }
+
+        .donate-details {
+            margin-top: 25px;
+            padding: 20px;
+            background: var(--amoled-card);
+            border: 1px solid var(--amoled-border);
+            border-radius: 15px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .donate-details strong {
+            color: var(--text-primary);
+        }
+
         .support {
             background: rgba(17, 17, 17, 0.7);
             border-top: 1px solid var(--amoled-border);
@@ -803,12 +993,25 @@
             border-top: 1px solid var(--amoled-border);
         }
 
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
         .footer-links {
             display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin: 25px 0;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .footer-links a {
@@ -819,12 +1022,15 @@
 
         .footer-links a:hover {
             color: var(--primary);
+            transform: translateX(5px);
         }
 
         .copyright {
             margin-top: 30px;
             color: var(--text-secondary);
             font-size: 0.9rem;
+            border-top: 1px solid var(--amoled-border);
+            padding-top: 20px;
         }
 
         @keyframes fadeInUp {
@@ -882,12 +1088,8 @@
                 align-items: center;
             }
             
-            .features-grid {
+            .features-grid, .stats-grid, .compatibility-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .compatibility-grid {
-                grid-template-columns: repeat(2, 1fr);
             }
             
             .step {
@@ -908,27 +1110,9 @@
                 grid-template-columns: 1fr;
             }
             
-            .telegram-island {
-                top: 15px;
-                right: 15px;
-                padding: 10px 15px;
-            }
-            
-            .telegram-island.with-nav {
-                top: 75px;
-            }
-            
-            .island-text {
-                font-size: 0.8rem;
-            }
-            
             .floating-nav {
                 width: 95%;
                 padding: 10px 20px;
-            }
-            
-            .nav-logo {
-                font-size: 1.1rem;
             }
             
             .nav-links {
@@ -943,6 +1127,25 @@
             .lang-trigger {
                 padding: 6px 12px;
                 font-size: 0.85rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .telegram-island {
+                top: 15px;
+                right: 15px;
+                padding: 10px 15px;
+            }
+            
+            .telegram-island.with-nav {
+                top: 75px;
+            }
+            
+            .island-text {
+                font-size: 0.8rem;
             }
         }
 
@@ -1039,6 +1242,30 @@
                 <a href="news.html" class="view-all-btn">
                     <i class="fas fa-newspaper"></i> <span class="view-all-text">View All News</span>
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="stats-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="stats-title">Project Statistics</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <div class="stat-number">15000+</div>
+                    <div class="stat-label">Total Downloads</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-number">4.9</div>
+                    <div class="stat-label">User Rating</div>
+                </div>
             </div>
         </div>
     </section>
@@ -1152,6 +1379,64 @@
         </div>
     </section>
 
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="faq-title">Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 class="faq-q-1">Is NextRAM safe to use?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="faq-a-1">Yes, NextRAM includes multiple safety checks and has been tested on various devices. However, as with any system modification, always backup your data before installation.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 class="faq-q-2">Will NextRAM work on my device?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="faq-a-2">NextRAM is compatible with Android 8.1+ devices with root access. It works with both Magisk and KernelSU. Check the compatibility section for more details.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 class="faq-q-3">How do I update NextRAM?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="faq-a-3">Updates can be installed through Magisk Manager or by downloading the latest version from our GitHub releases page. Your settings will be preserved during updates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="donate" class="donate-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="donate-title">Support Development</h2>
+            </div>
+            <div class="donate-content">
+                <p class="donate-text">
+                    NextRAM has always been and will remain completely free. However, if you'd like to support the development and help us improve the module, you can make a donation.
+                </p>
+                <a href="https://t.me/nextram_official" class="donate-btn" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                    <span class="donate-btn-text">Support Development</span>
+                </a>
+                <div class="donate-details">
+                    <p><strong>Available payment methods:</strong> Cryptocurrency (Ton) and Russian Rubles</p>
+                    <p><strong>For donation details:</strong> Please visit our Telegram channel and contact the developers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="support" class="support">
         <div class="container">
             <div class="section-title">
@@ -1182,21 +1467,41 @@
 
     <footer>
         <div class="container">
-            <p class="footer-text" style="color: var(--text-primary);">NextRAM - Advanced Memory Management Module</p>
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="news.html">News</a>
-                <a href="https://github.com/Rexamm1t/NextRAM">GitHub</a>
-                <a href="https://t.me/nextram_official">Telegram</a>
-                <a href="mailto:nextram.official@gmail.com">Email Support</a>
-                <a href="#">Privacy Policy</a>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title-1">NextRAM</h3>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="news.html">News & Updates</a>
+                        <a href="#features">Features</a>
+                        <a href="#installation">Installation Guide</a>
+                        <a href="#compatibility">Compatibility</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title-2">Resources</h3>
+                    <div class="footer-links">
+                        <a href="https://github.com/Rexamm1t/NextRAM">GitHub Repository</a>
+                        <a href="https://github.com/Rexamm1t/NextRAM/wiki">Documentation</a>
+                        <a href="https://github.com/Rexamm1t/NextRAM/issues">Report Issues</a>
+                        <a href="#faq">FAQ</a>
+                        <a href="#donate">Support Development</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title-3">Community</h3>
+                    <div class="footer-links">
+                        <a href="https://t.me/nextram_official">Telegram Channel</a>
+                        <a href="mailto:nextram.official@gmail.com">Email Support</a>
+                    </div>
+                </div>
             </div>
-            <p class="license-text" style="color: var(--text-secondary); margin-top: 15px;">Module is distributed under GPL v3 license. Source code is available in project repository.</p>
-            <p class="warning-text" style="margin-top: 20px; font-size: 0.9rem; color: var(--text-secondary);">
-                Note: Use the module with caution. Incorrect configuration may affect system stability.
-            </p>
             <div class="copyright">
-                All rights reserved © 2025 NextRAM - NextRAM Team.
+                <p class="license-text" style="margin-bottom: 10px;">Module is distributed under GPL v3 license. Source code is available in project repository.</p>
+                <p class="warning-text" style="margin-bottom: 10px; font-size: 0.9rem;">
+                    Note: Use the module with caution. Incorrect configuration may affect system stability.
+                </p>
+                <p>All rights reserved © 2025 NextRAM - NextRAM Team.</p>
             </div>
         </div>
     </footer>
@@ -1294,6 +1599,7 @@
                 en: {
                     'latest-news-title': 'Latest News',
                     'view-all-text': 'View All News',
+                    'stats-title': 'Project Statistics',
                     'description-title': 'Description',
                     'description-text': 'NextRAM is a powerful Magisk module for advanced memory management on Android devices. The module provides enhanced zram and swap file capabilities along with fine-tuned memory parameters for performance optimization.',
                     'features-title': 'Key Features',
@@ -1315,19 +1621,31 @@
                     'compat-text-2': 'Magisk & KernelSU',
                     'compat-text-3': 'ARM, ARM64, x86',
                     'compat-text-4': 'Root Access Required',
+                    'faq-title': 'Frequently Asked Questions',
+                    'faq-q-1': 'Is NextRAM safe to use?',
+                    'faq-a-1': 'Yes, NextRAM includes multiple safety checks and has been tested on various devices. However, as with any system modification, always backup your data before installation.',
+                    'faq-q-2': 'Will NextRAM work on my device?',
+                    'faq-a-2': 'NextRAM is compatible with Android 8.1+ devices with root access. It works with both Magisk and KernelSU. Check the compatibility section for more details.',
+                    'faq-q-3': 'How do I update NextRAM?',
+                    'faq-a-3': 'Updates can be installed through Magisk Manager or by downloading the latest version from our GitHub releases page. Your settings will be preserved during updates.',
+                    'donate-title': 'Support Development',
+                    'donate-text': 'NextRAM has always been and will remain completely free. However, if you\'d like to support the development and help us improve the module, you can make a donation.',
+                    'donate-btn-text': 'Support Development',
                     'support-title': 'Support',
                     'support-text': 'For support and updates, join our Telegram channel or contact the developers directly.',
                     'developers-label': 'Developers:',
                     'developers-list': '@rexamm1t, @matrix_5858, @Alloyd031, @wefol1x, @w3b_0s1nt',
-                    'footer-text': 'NextRAM - Advanced Memory Management Module',
+                    'footer-title-1': 'NextRAM',
+                    'footer-title-2': 'Resources',
+                    'footer-title-3': 'Community',
                     'license-text': 'Module is distributed under GPL v3 license. Source code is available in project repository.',
                     'warning-text': 'Note: Use the module with caution. Incorrect configuration may affect system stability.',
-                    'download-text': 'Download Now',
-                    'read-more': 'Read More'
+                    'download-text': 'Download Now'
                 },
                 ru: {
                     'latest-news-title': 'Последние новости',
                     'view-all-text': 'Все новости',
+                    'stats-title': 'Статистика проекта',
                     'description-title': 'Описание',
                     'description-text': 'NextRAM - это мощный модуль Magisk для расширенного управления памятью на устройствах Android. Модуль предоставляет улучшенные возможности zram и файлов подкачки вместе с тонко настроенными параметрами памяти для оптимизации производительности.',
                     'features-title': 'Ключевые возможности',
@@ -1349,19 +1667,31 @@
                     'compat-text-2': 'Magisk & KernelSU',
                     'compat-text-3': 'ARM, ARM64, x86',
                     'compat-text-4': 'Требуется root-доступ',
+                    'faq-title': 'Часто задаваемые вопросы',
+                    'faq-q-1': 'Безопасно ли использовать NextRAM?',
+                    'faq-a-1': 'Да, NextRAM включает множественные проверки безопасности и был протестирован на различных устройствах. Однако, как и при любой модификации системы, всегда делайте резервную копию данных перед установкой.',
+                    'faq-q-2': 'Будет ли NextRAM работать на моем устройстве?',
+                    'faq-a-2': 'NextRAM совместим с устройствами Android 8.1+ с root-доступом. Он работает как с Magisk, так и с KernelSU. Проверьте раздел совместимости для получения более подробной информации.',
+                    'faq-q-3': 'Как обновить NextRAM?',
+                    'faq-a-3': 'Обновления могут быть установлены через Magisk Manager или путем загрузки последней версии со страницы выпусков на GitHub. Ваши настройки будут сохранены во время обновлений.',
+                    'donate-title': 'Поддержка разработки',
+                    'donate-text': 'NextRAM всегда был и будет полностью бесплатным. Однако, если вы хотите поддержать разработку и помочь нам улучшить модуль, вы можете сделать пожертвование.',
+                    'donate-btn-text': 'Поддержать разработку',
                     'support-title': 'Поддержка',
                     'support-text': 'Для получения поддержки и обновлений присоединяйтесь к нашему Telegram-каналу или свяжитесь с разработчиками напрямую.',
                     'developers-label': 'Разработчики:',
                     'developers-list': '@rexamm1t, @matrix_5858, @Alloyd031, @wefol1x, @w3b_0s1nt',
-                    'footer-text': 'NextRAM - Модуль расширенного управления памятью',
+                    'footer-title-1': 'NextRAM',
+                    'footer-title-2': 'Ресурсы',
+                    'footer-title-3': 'Сообщество',
                     'license-text': 'Модуль распространяется по лицензии GPL v3. Исходный код доступен в репозитории проекта.',
                     'warning-text': 'Примечание: Используйте модуль с осторожностью. Неправильная конфигурация может повлиять на стабильность системы.',
-                    'download-text': 'Скачать сейчас',
-                    'read-more': 'Читать далее'
+                    'download-text': 'Скачать сейчас'
                 },
                 uk: {
                     'latest-news-title': 'Останні новини',
                     'view-all-text': 'Всі новини',
+                    'stats-title': 'Статистика проекту',
                     'description-title': 'Опис',
                     'description-text': 'NextRAM - це потужний модуль Magisk для розширеного керування пам\'яттю на пристроях Android. Модуль надає покращені можливості zram та файлів підкачки разом із тонко налаштованими параметрами пам\'яті для оптимізації продуктивності.',
                     'features-title': 'Ключові функції',
@@ -1383,19 +1713,31 @@
                     'compat-text-2': 'Magisk & KernelSU',
                     'compat-text-3': 'ARM, ARM64, x86',
                     'compat-text-4': 'Потрібен root-доступ',
+                    'faq-title': 'Часті питання',
+                    'faq-q-1': 'Чи безпечно використовувати NextRAM?',
+                    'faq-a-1': 'Так, NextRAM включає множинні перевірки безпеки і був протестований на різних пристроях. Однак, як і при будь-якій модифікації системи, завжди робіть резервну копію даних перед встановленням.',
+                    'faq-q-2': 'Чи працюватиме NextRAM на моєму пристрої?',
+                    'faq-a-2': 'NextRAM сумісний з пристроями Android 8.1+ з root-доступом. Він працює як з Magisk, так і з KernelSU. Перевірте розділ сумісності для отримання більш детальної інформації.',
+                    'faq-q-3': 'Як оновити NextRAM?',
+                    'faq-a-3': 'Оновлення можуть бути встановлені через Magisk Manager або шляхом завантаження останньої версії зі сторінки випусків на GitHub. Ваші налаштування будуть збережені під час оновлень.',
+                    'donate-title': 'Підтримка розробки',
+                    'donate-text': 'NextRAM завжди був і залишиться повністю безкоштовним. Однак, якщо ви хочете підтримати розробку та допомогти нам покращити модуль, ви можете зробити пожертву.',
+                    'donate-btn-text': 'Підтримати розробку',
                     'support-title': 'Підтримка',
                     'support-text': 'Для отримання підтримки та оновлень приєднуйтесь до нашого Telegram-каналу або зв\'яжіться з розробниками безпосередньо.',
                     'developers-label': 'Розробники:',
                     'developers-list': '@rexamm1t, @matrix_5858, @Alloyd031, @wefol1x, @w3b_0s1nt',
-                    'footer-text': 'NextRAM - Модуль розширеного керування пам\'яттю',
+                    'footer-title-1': 'NextRAM',
+                    'footer-title-2': 'Ресурси',
+                    'footer-title-3': 'Спільнота',
                     'license-text': 'Модуль поширюється за ліцензією GPL v3. Вихідний код доступний у репозиторії проекту.',
                     'warning-text': 'Примітка: Використовуйте модуль обережно. Неправильна конфігурація може вплинути на стабільність системи.',
-                    'download-text': 'Завантажити зараз',
-                    'read-more': 'Читати далі'
+                    'download-text': 'Завантажити зараз'
                 },
                 zh: {
                     'latest-news-title': '最新新闻',
                     'view-all-text': '查看所有新闻',
+                    'stats-title': '项目统计',
                     'description-title': '描述',
                     'description-text': 'NextRAM 是一个强大的 Magisk 模块，用于在 Android 设备上进行高级内存管理。该模块提供增强的 zram 和交换文件功能，以及经过微调的内存参数以优化性能。',
                     'features-title': '主要功能',
@@ -1417,15 +1759,26 @@
                     'compat-text-2': 'Magisk & KernelSU',
                     'compat-text-3': 'ARM, ARM64, x86',
                     'compat-text-4': '需要 Root 权限',
+                    'faq-title': '常见问题',
+                    'faq-q-1': '使用 NextRAM 安全吗？',
+                    'faq-a-1': '是的，NextRAM 包含多重安全检查，并已在各种设备上进行测试。但是，与任何系统修改一样，安装前请务必备份数据。',
+                    'faq-q-2': 'NextRAM 能在我的设备上运行吗？',
+                    'faq-a-2': 'NextRAM 与具有 root 权限的 Android 8.1+ 设备兼容。它适用于 Magisk 和 KernelSU。请查看兼容性部分了解更多详情。',
+                    'faq-q-3': '如何更新 NextRAM？',
+                    'faq-a-3': '可以通过 Magisk Manager 或从我们的 GitHub 发布页面下载最新版本来安装更新。您的设置将在更新期间保留。',
+                    'donate-title': '支持开发',
+                    'donate-text': 'NextRAM 一直是并将始终保持完全免费。但是，如果您想支持开发并帮助我们改进模块，可以进行捐赠。',
+                    'donate-btn-text': '支持开发',
                     'support-title': '支持',
                     'support-text': '如需支持和更新，请加入我们的 Telegram 频道或直接联系开发人员。',
                     'developers-label': '开发人员：',
                     'developers-list': '@rexamm1t, @matrix_5858, @Alloyd031, @wefol1x, @w3b_0s1nt',
-                    'footer-text': 'NextRAM - 高级内存管理模块',
+                    'footer-title-1': 'NextRAM',
+                    'footer-title-2': '资源',
+                    'footer-title-3': '社区',
                     'license-text': '该模块根据 GPL v3 许可证分发。源代码可在项目存储库中找到。',
                     'warning-text': '注意：请谨慎使用该模块。不正确的配置可能会影响系统稳定性。',
-                    'download-text': '立即下载',
-                    'read-more': '阅读更多'
+                    'download-text': '立即下载'
                 }
             };
 
@@ -1477,6 +1830,8 @@
                     }
                 }
             ];
+
+            let currentLanguage = 'en';
 
             function renderLatestNews() {
                 const newsPreviewGrid = document.getElementById('newsPreviewGrid');
@@ -1537,6 +1892,8 @@
             }
 
             function switchLanguage(lang) {
+                currentLanguage = lang;
+                
                 langOptions.forEach(option => {
                     if (option.dataset.lang === lang) {
                         option.classList.add('active');
@@ -1560,6 +1917,14 @@
                 option.addEventListener('click', function() {
                     switchLanguage(this.dataset.lang);
                     langDropdown.classList.remove('active');
+                });
+            });
+
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active');
                 });
             });
 
@@ -1603,6 +1968,24 @@
                                 }, index * 200);
                             });
                         }
+                        
+                        if (entry.target.classList.contains('stats-grid')) {
+                            const items = entry.target.querySelectorAll('.stat-item');
+                            items.forEach((item, index) => {
+                                setTimeout(() => {
+                                    item.classList.add('visible');
+                                }, index * 150);
+                            });
+                        }
+                        
+                        if (entry.target.classList.contains('faq-grid')) {
+                            const items = entry.target.querySelectorAll('.faq-item');
+                            items.forEach((item, index) => {
+                                setTimeout(() => {
+                                    item.classList.add('visible');
+                                }, index * 150);
+                            });
+                        }
                     }
                 });
             }, { threshold: 0.1 });
@@ -1611,7 +1994,7 @@
                 sectionObserver.observe(section);
             });
             
-            document.querySelectorAll('.feature-card, .step, .compat-item, .news-preview-card').forEach(el => {
+            document.querySelectorAll('.feature-card, .step, .compat-item, .news-preview-card, .stat-item, .faq-item').forEach(el => {
                 sectionObserver.observe(el);
             });
 
