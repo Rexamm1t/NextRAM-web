@@ -114,7 +114,7 @@
             align-items: center;
             justify-content: space-between;
             width: 90%;
-            max-width: 500px;
+            max-width: 600px;
             z-index: 1000;
             transition: var(--transition);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -142,6 +142,30 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-left: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background: rgba(233, 30, 99, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            background: rgba(233, 30, 99, 0.15);
         }
 
         .nav-lang-switcher {
@@ -392,50 +416,6 @@
             animation: spin 1s linear infinite;
         }
 
-        .lang-switcher {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeInUp 1s ease 1.3s forwards;
-        }
-
-        .lang-btn {
-            background: var(--amoled-card);
-            border: 1px solid var(--amoled-border);
-            color: var(--text-secondary);
-            padding: 8px 16px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.9rem;
-        }
-
-        .lang-btn.active {
-            background: rgba(233, 30, 99, 0.2);
-            color: var(--primary);
-            border-color: var(--primary);
-        }
-
-        .lang-btn:hover {
-            background: rgba(233, 30, 99, 0.1);
-            color: var(--text-primary);
-        }
-
-        section {
-            padding: 100px 0;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         .section-title {
             text-align: center;
             margin-bottom: 60px;
@@ -460,6 +440,151 @@
             height: 3px;
             background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
             border-radius: 3px;
+        }
+
+        section {
+            padding: 100px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .latest-news {
+            background: rgba(17, 17, 17, 0.5);
+            border-top: 1px solid var(--amoled-border);
+            border-bottom: 1px solid var(--amoled-border);
+        }
+
+        .news-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .news-preview-card {
+            background: var(--amoled-card);
+            border: 1px solid var(--amoled-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .news-preview-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .news-preview-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .news-preview-header {
+            padding: 25px 25px 15px;
+            border-bottom: 1px solid var(--amoled-border);
+        }
+
+        .news-preview-date {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .news-preview-title {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .news-preview-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .news-preview-tag {
+            background: rgba(233, 30, 99, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(233, 30, 99, 0.2);
+        }
+
+        .news-preview-content {
+            padding: 20px 25px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .news-preview-footer {
+            padding: 15px 25px;
+            border-top: 1px solid var(--amoled-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .news-preview-author {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .view-all-news {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .view-all-btn {
+            display: inline-block;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .view-all-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(233, 30, 99, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .view-all-btn:hover::before {
+            left: 100%;
+        }
+
+        .view-all-btn:hover {
+            background: rgba(233, 30, 99, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(233, 30, 99, 0.2);
         }
 
         .features-grid {
@@ -683,6 +808,7 @@
             justify-content: center;
             gap: 25px;
             margin: 25px 0;
+            flex-wrap: wrap;
         }
 
         .footer-links a {
@@ -777,14 +903,9 @@
             .section-title h2 {
                 font-size: 1.8rem;
             }
-
-            .lang-switcher {
-                gap: 5px;
-            }
-
-            .lang-btn {
-                padding: 6px 12px;
-                font-size: 0.8rem;
+            
+            .news-preview-grid {
+                grid-template-columns: 1fr;
             }
             
             .telegram-island {
@@ -808,6 +929,15 @@
             
             .nav-logo {
                 font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                gap: 10px;
+            }
+            
+            .nav-link {
+                font-size: 0.8rem;
+                padding: 5px 10px;
             }
             
             .lang-trigger {
@@ -839,6 +969,10 @@
     <div class="floating-nav" id="floatingNav">
         <div class="nav-logo">
             <span class="next">Next</span><span class="ram">RAM</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="news.html" class="nav-link">News</a>
         </div>
         <div class="nav-lang-switcher">
             <button class="lang-trigger" id="langTrigger">
@@ -893,6 +1027,21 @@
             </div>
         </div>
     </header>
+
+    <section id="latest-news" class="latest-news">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="latest-news-title">Latest News</h2>
+            </div>
+            <div class="news-preview-grid" id="newsPreviewGrid">
+            </div>
+            <div class="view-all-news">
+                <a href="news.html" class="view-all-btn">
+                    <i class="fas fa-newspaper"></i> <span class="view-all-text">View All News</span>
+                </a>
+            </div>
+        </div>
+    </section>
 
     <section id="description">
         <div class="container">
@@ -1035,6 +1184,8 @@
         <div class="container">
             <p class="footer-text" style="color: var(--text-primary);">NextRAM - Advanced Memory Management Module</p>
             <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="news.html">News</a>
                 <a href="https://github.com/Rexamm1t/NextRAM">GitHub</a>
                 <a href="https://t.me/nextram_official">Telegram</a>
                 <a href="mailto:nextram.official@gmail.com">Email Support</a>
@@ -1092,7 +1243,6 @@
             const langDropdown = document.getElementById('langDropdown');
             const currentLang = document.querySelector('.current-lang');
             const langOptions = document.querySelectorAll('.lang-option');
-            const langButtons = document.querySelectorAll('.lang-btn');
             
             langTrigger.addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -1142,6 +1292,8 @@
 
             const translations = {
                 en: {
+                    'latest-news-title': 'Latest News',
+                    'view-all-text': 'View All News',
                     'description-title': 'Description',
                     'description-text': 'NextRAM is a powerful Magisk module for advanced memory management on Android devices. The module provides enhanced zram and swap file capabilities along with fine-tuned memory parameters for performance optimization.',
                     'features-title': 'Key Features',
@@ -1170,9 +1322,12 @@
                     'footer-text': 'NextRAM - Advanced Memory Management Module',
                     'license-text': 'Module is distributed under GPL v3 license. Source code is available in project repository.',
                     'warning-text': 'Note: Use the module with caution. Incorrect configuration may affect system stability.',
-                    'download-text': 'Download Now'
+                    'download-text': 'Download Now',
+                    'read-more': 'Read More'
                 },
                 ru: {
+                    'latest-news-title': 'Последние новости',
+                    'view-all-text': 'Все новости',
                     'description-title': 'Описание',
                     'description-text': 'NextRAM - это мощный модуль Magisk для расширенного управления памятью на устройствах Android. Модуль предоставляет улучшенные возможности zram и файлов подкачки вместе с тонко настроенными параметрами памяти для оптимизации производительности.',
                     'features-title': 'Ключевые возможности',
@@ -1201,9 +1356,12 @@
                     'footer-text': 'NextRAM - Модуль расширенного управления памятью',
                     'license-text': 'Модуль распространяется по лицензии GPL v3. Исходный код доступен в репозитории проекта.',
                     'warning-text': 'Примечание: Используйте модуль с осторожностью. Неправильная конфигурация может повлиять на стабильность системы.',
-                    'download-text': 'Скачать сейчас'
+                    'download-text': 'Скачать сейчас',
+                    'read-more': 'Читать далее'
                 },
                 uk: {
+                    'latest-news-title': 'Останні новини',
+                    'view-all-text': 'Всі новини',
                     'description-title': 'Опис',
                     'description-text': 'NextRAM - це потужний модуль Magisk для розширеного керування пам\'яттю на пристроях Android. Модуль надає покращені можливості zram та файлів підкачки разом із тонко налаштованими параметрами пам\'яті для оптимізації продуктивності.',
                     'features-title': 'Ключові функції',
@@ -1232,9 +1390,12 @@
                     'footer-text': 'NextRAM - Модуль розширеного керування пам\'яттю',
                     'license-text': 'Модуль поширюється за ліцензією GPL v3. Вихідний код доступний у репозиторії проекту.',
                     'warning-text': 'Примітка: Використовуйте модуль обережно. Неправильна конфігурація може вплинути на стабільність системи.',
-                    'download-text': 'Завантажити зараз'
+                    'download-text': 'Завантажити зараз',
+                    'read-more': 'Читати далі'
                 },
                 zh: {
+                    'latest-news-title': '最新新闻',
+                    'view-all-text': '查看所有新闻',
                     'description-title': '描述',
                     'description-text': 'NextRAM 是一个强大的 Magisk 模块，用于在 Android 设备上进行高级内存管理。该模块提供增强的 zram 和交换文件功能，以及经过微调的内存参数以优化性能。',
                     'features-title': '主要功能',
@@ -1263,9 +1424,117 @@
                     'footer-text': 'NextRAM - 高级内存管理模块',
                     'license-text': '该模块根据 GPL v3 许可证分发。源代码可在项目存储库中找到。',
                     'warning-text': '注意：请谨慎使用该模块。不正确的配置可能会影响系统稳定性。',
-                    'download-text': '立即下载'
+                    'download-text': '立即下载',
+                    'read-more': '阅读更多'
                 }
             };
+
+            const latestNewsData = [
+                {
+                    id: 1,
+                    date: "2025-03-20",
+                    category: "release",
+                    tags: ["release", "update"],
+                    author: "@rexamm1t",
+                    en: {
+                        title: "NextRAM v9.0.127 (90127) Released",
+                        content: "Added time-out when selecting the configuration method. Fixed various bugs and improved stability."
+                    },
+                    ru: {
+                        title: "Выпущен NextRAM v9.0.127 (90127)",
+                        content: "Добавлен тайм-аут при выборе метода конфигурации. Исправлены различные ошибки и улучшена стабильность."
+                    },
+                    uk: {
+                        title: "Випущено NextRAM v9.0.127 (90127)",
+                        content: "Додано тайм-аут при виборі методу конфігурації. Виправлені різні помилки та покращено стабільність."
+                    },
+                    zh: {
+                        title: "NextRAM v9.0.127 (90127) 已发布",
+                        content: "添加了选择配置方法时的超时设置。修复了各种错误并提高了稳定性。"
+                    }
+                },
+                {
+                    id: 2,
+                    date: "2025-03-15",
+                    category: "release",
+                    tags: ["release", "major", "beta"],
+                    author: "@rexamm1t",
+                    en: {
+                        title: "NextRAM v9.0.000 (90000) Major Update",
+                        content: "Major release with first C++ tool, complete APK redesign with Material 3, and kernel improvements."
+                    },
+                    ru: {
+                        title: "Крупное обновление NextRAM v9.0.000 (90000)",
+                        content: "Крупный релиз с первым C++ инструментом, полным редизайном APK в Material 3 и улучшениями ядра."
+                    },
+                    uk: {
+                        title: "Крупне оновлення NextRAM v9.0.000 (90000)",
+                        content: "Крупний реліз з першим інструментом C++, повним редизайном APK у Material 3 та покращеннями ядра."
+                    },
+                    zh: {
+                        title: "NextRAM v9.0.000 (90000) 主要更新",
+                        content: "主要版本包含首个 C++ 工具，APK 完全重新设计为 Material 3，以及内核改进。"
+                    }
+                }
+            ];
+
+            function renderLatestNews() {
+                const newsPreviewGrid = document.getElementById('newsPreviewGrid');
+                newsPreviewGrid.innerHTML = '';
+                
+                latestNewsData.forEach((news, index) => {
+                    const newsCard = document.createElement('div');
+                    newsCard.className = 'news-preview-card';
+                    newsCard.setAttribute('data-category', news.category);
+                    
+                    const formattedDate = new Date(news.date).toLocaleDateString(currentLanguage === 'zh' ? 'zh-CN' : currentLanguage, {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    
+                    const tagTranslations = {
+                        'release': translations[currentLanguage]['release'] || 'Release',
+                        'update': translations[currentLanguage]['update'] || 'Update',
+                        'beta': 'Beta',
+                        'major': 'Major'
+                    };
+                    
+                    const displayTags = news.tags.filter(tag => tagTranslations[tag]);
+                    
+                    newsCard.innerHTML = `
+                        <div class="news-preview-header">
+                            <div>
+                                <div class="news-preview-date">
+                                    <i class="far fa-calendar"></i>
+                                    <span>${formattedDate}</span>
+                                </div>
+                                <h3 class="news-preview-title">${news[currentLanguage].title}</h3>
+                                <div class="news-preview-tags">
+                                    ${displayTags.map(tag => `
+                                        <span class="news-preview-tag">${tagTranslations[tag] || tag}</span>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="news-preview-content">
+                            <p>${news[currentLanguage].content}</p>
+                        </div>
+                        <div class="news-preview-footer">
+                            <div class="news-preview-author">
+                                <i class="fas fa-user"></i>
+                                <span>${news.author}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    newsPreviewGrid.appendChild(newsCard);
+                    
+                    setTimeout(() => {
+                        newsCard.classList.add('visible');
+                    }, index * 200);
+                });
+            }
 
             function switchLanguage(lang) {
                 langOptions.forEach(option => {
@@ -1277,20 +1546,14 @@
                     }
                 });
 
-                langButtons.forEach(btn => {
-                    if (btn.dataset.lang === lang) {
-                        btn.classList.add('active');
-                    } else {
-                        btn.classList.remove('active');
-                    }
-                });
-
                 for (const key in translations[lang]) {
                     const elements = document.querySelectorAll(`.${key}`);
                     elements.forEach(element => {
                         element.textContent = translations[lang][key];
                     });
                 }
+
+                renderLatestNews();
             }
 
             langOptions.forEach(option => {
@@ -1299,17 +1562,6 @@
                     langDropdown.classList.remove('active');
                 });
             });
-
-            langButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    switchLanguage(this.dataset.lang);
-                });
-            });
-
-            const sectionObserverOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
 
             const sectionObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1342,17 +1594,28 @@
                                 }, index * 150);
                             });
                         }
+                        
+                        if (entry.target.classList.contains('news-preview-grid')) {
+                            const cards = entry.target.querySelectorAll('.news-preview-card');
+                            cards.forEach((card, index) => {
+                                setTimeout(() => {
+                                    card.classList.add('visible');
+                                }, index * 200);
+                            });
+                        }
                     }
                 });
-            }, sectionObserverOptions);
+            }, { threshold: 0.1 });
 
             document.querySelectorAll('section').forEach(section => {
                 sectionObserver.observe(section);
             });
             
-            document.querySelectorAll('.feature-card, .step, .compat-item').forEach(el => {
+            document.querySelectorAll('.feature-card, .step, .compat-item, .news-preview-card').forEach(el => {
                 sectionObserver.observe(el);
             });
+
+            renderLatestNews();
         });
     </script>
 </body>
